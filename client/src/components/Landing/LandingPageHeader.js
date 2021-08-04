@@ -1,6 +1,22 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 const LandingPageHeader = () => {
+    const [user, setUser] = useState("");
+    useEffect(() => {
+        getUser()
+    });
+    function getUser(){
+        axios('http://localhost:5000/api/current_user')
+        .then(async response => {
+            console.log(response)
+            setUser(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    };
+
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <Link className="navbar-brand" style={{width:'15%', minWidth: '6rem'}} to="/">Home</Link>
@@ -20,7 +36,10 @@ const LandingPageHeader = () => {
                         <Link to="/rblxgames" className="nav-link">Games</Link>
                     </li>
                     <li key={4} className="nav-item">
-                        <Link to="/login" className="nav-link btn btn-xs btn-danger" style={{borderRadius: '20px'}}>Sign In</Link>
+                        { user === "" ? 
+                        <Link to="/auth/google" className="nav-link btn btn-xs btn-danger" style={{borderRadius: '20px'}}>Sign In</Link> :
+                        <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                        }                 
                     </li>       
                 </ul>
             </div>
