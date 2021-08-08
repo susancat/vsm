@@ -37,10 +37,16 @@ const LandingPageHeader = () => {
                     </li>
                     <li key={4} className="nav-item">
                         { user === "" ? 
-                        <Link to="/auth/google" className="nav-link btn btn-xs btn-danger" style={{borderRadius: '20px'}}>Sign In</Link> :
+                        <a href='/auth/google' className="nav-link btn btn-xs btn-danger" style={{borderRadius: '20px'}}>Sign In</a> :
                         <Link to="/dashboard" className="nav-link">Dashboard</Link>
                         }                 
-                    </li>       
+                    </li> 
+                    <li key={5} className="nav-item">
+                        { user === "" ?
+                        <a href="/register" className="nav-link btn btn-xs btn-light ml-1" style={{borderRadius: '20px'}}>Sign Up</a> :
+                        <a href="/api/logout" className="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>    
+                    }
+                    </li>      
                 </ul>
             </div>
         </nav>
