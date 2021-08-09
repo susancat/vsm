@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const LandingPageHeader = () => {
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
     useEffect(() => {
         getUser()
-    });
+    },[user]);
+    //[user] tells useEffect only run again when user value changed,otherwise it will run infinitely
     function getUser(){
-        axios('http://localhost:5000/api/current_user')
+        axios.get('http://localhost:5000/api/current_user',{ withCredentials: true })
         .then(async response => {
             console.log(response)
-            setUser(response.data)
+            setUser(response.data.googleid)
         }).catch(error => {
             console.log(error)
         })
@@ -36,13 +37,13 @@ const LandingPageHeader = () => {
                         <Link to="/rblxgames" className="nav-link">Games</Link>
                     </li>
                     <li key={4} className="nav-item">
-                        { user === "" ? 
+                        { !user ? 
                         <a href='/auth/google' className="nav-link btn btn-xs btn-danger" style={{borderRadius: '20px'}}>Sign In</a> :
                         <Link to="/dashboard" className="nav-link">Dashboard</Link>
                         }                 
                     </li> 
                     <li key={5} className="nav-item">
-                        { user === "" ?
+                        { !user ?
                         <a href="/register" className="nav-link btn btn-xs btn-light ml-1" style={{borderRadius: '20px'}}>Sign Up</a> :
                         <a href="/api/logout" className="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>    
                     }

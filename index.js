@@ -3,13 +3,22 @@ const express = require('express'),
       mongoose = require('mongoose'),
       passport = require('passport'),
       cookieSession = require('cookie-session'),
-      keys = require('./config/keys');
+      keys = require('./config/keys'),
+      cors = require('cors');
 
 require('./services/passport');
 
 const authRoutes = require('./routes/auth');
 
 app.use(express.json());
+//must install CORS to enable user data fetch from node server side
+app.use(
+    cors({
+         origin: "http://localhost:3000", // allow to server to accept request from different origin
+         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+         credentials: true, // allow session cookie from browser to pass through
+   })
+);
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); 
@@ -21,7 +30,7 @@ app.use(function (req, res, next) {
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: keys.cookieKey
+        keys: [keys.cookieKey]
     })
 );
 
