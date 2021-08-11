@@ -9,7 +9,7 @@ const LandingPageHeader = () => {
     },[user]);
     //[user] tells useEffect only run again when user value changed,otherwise it will run infinitely
     function getUser(){
-        axios.get('http://localhost:5000/api/current_user',{ withCredentials: true })
+        axios.get('http://localhost:3001/api/current_user',{ withCredentials: true })
         .then(async response => {
             console.log(response)
             setUser(response.data.googleid)

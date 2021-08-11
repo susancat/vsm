@@ -9,6 +9,7 @@ const express = require('express'),
 require('./services/passport');
 
 const authRoutes = require('./routes/auth');
+const quizRoutes = require('./routes/quizzes');
 
 app.use(express.json());
 //must install CORS to enable user data fetch from node server side
@@ -48,6 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(authRoutes);
+app.use('/api/quizzes', quizRoutes);
 
 app.get('/', function(req, res){
     res.send("VSM!!!!!!")
@@ -56,6 +58,6 @@ app.get('*', function(req, res){
     res.status(404).render('404');
 });
 
-app.listen(process.env.PORT || 5000, function(){
+app.listen(process.env.PORT || 3001, function(){
     console.log("React VSM has started");
 });

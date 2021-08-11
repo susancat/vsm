@@ -8,7 +8,7 @@ const Header = () => {
         getUser()
     },[user]);
     function getUser(){
-        axios('http://localhost:5000/api/current_user',{ withCredentials: true })
+        axios('http://localhost:3001/api/current_user',{ withCredentials: true })
         .then(async response => {
             console.log(response)
             setUser(response.data.username)
@@ -29,9 +29,6 @@ const Header = () => {
                 <ul className="navbar-nav">
                     <li className="nav-item active">
                         <a className="nav-link" href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> Quizzes</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/courses"><i className="fas fa-users"></i> Classes</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/games/all"><i className="fas fa-play"></i> Games</a>
