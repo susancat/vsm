@@ -8,10 +8,12 @@ const express = require('express'),
 
 require('./services/passport');
 
-const authRoutes = require('./routes/auth');
-const quizRoutes = require('./routes/quizzes');
+const authRoutes = require('./routes/auth'),
+      quizRoutes = require('./routes/quizzes');
 
 app.use(express.json());
+app.use(express.static(__dirname + "/public"));
+
 //must install CORS to enable user data fetch from node server side
 app.use(
     cors({

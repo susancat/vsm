@@ -18,9 +18,9 @@ const Header = () => {
     };
 
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">   
-            <Link className="navbar-brand" style={{width:'15%', minWidth: '6rem'}} to="/">Home</Link>
-            <button className="navbar-toggler ml-auto mt-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <nav className="navbar navbar-expand-lg navbar-inverse fixed-top bg-primary">   
+            <Link className="navbar-brand" style={{width:'15%', minWidth: '6rem', color: '#fff'}} to="/">Home</Link>
+            <button className="navbar-toggler ml-auto mt-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
@@ -28,16 +28,16 @@ const Header = () => {
                 <>
                 <ul className="navbar-nav">
                     <li className="nav-item active">
-                        <a className="nav-link" href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> Quizzes</a>
+                        <a className="nav-link" style={{ color: '#fff'}} href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> Quizzes</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/games/all"><i className="fas fa-play"></i> Games</a>
+                        <a className="nav-link" style={{ color: '#fff'}} href="/games/all"><i className="fas fa-play"></i> Games</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/gameresults"><i className="fas fa-chart-line"></i> Reports</a>
+                        <a className="nav-link" style={{ color: '#fff'}} href="/gameresults"><i className="fas fa-chart-line"></i> Reports</a>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/dashboard"><i className="fas fa-school"></i> Dashboard</Link>
+                        <Link className="nav-link" style={{ color: '#fff'}} to="/dashboard"><i className="fas fa-school"></i> Dashboard</Link>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
@@ -56,17 +56,17 @@ const Header = () => {
                     { !user ?
                     <>
                     <li>
-                        <a href="/login" className="text-decoration-none"><i className="fa fa-sign-in" aria-hidden="true"></i> &nbsp;&nbsp;Login&nbsp;&nbsp;</a>
+                        <a href="/login" className="text-decoration-none" style={{ color: '#fff'}}><i className="fa fa-sign-in" aria-hidden="true"></i> &nbsp;&nbsp;Login&nbsp;&nbsp;</a>
                     </li>
                     <li >
-                        <a href="/register" className="text-decoration-none"><i className="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</a>
+                        <a href="/register" className="text-decoration-none" style={{ color: '#fff'}}><i className="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</a>
                     </li>
                     </> :
                     <>
                     <li>
-                        <Link to="#" className="text-decoration-none"><i className="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Signed in as&nbsp;{user}&nbsp;&nbsp;</Link></li>
+                        <Link to="#" className="text-decoration-none" style={{ color: '#fff'}}><i className="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Signed in as&nbsp;{user}&nbsp;&nbsp;</Link></li>
                     <li>
-                        <a href="/api/logout" className="text-decoration-none"><i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>
+                        <a href="/api/logout" className="text-decoration-none" style={{ color: '#fff'}}><i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>
                     </li>
                     </>
                     }

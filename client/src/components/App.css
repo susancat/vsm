@@ -9,3 +9,25 @@
     background-position: center; 
     border-radius: .3rem;
 }
+
+.part-divider{
+    width: 20%;
+    cursor:initial; 
+    position:relative; 
+    display:inline-block;
+  }
+  
+  .part-divider::before, .part-divider::after {
+    content:' ';
+    display:block;
+    position:absolute; 
+    top:50%; 
+    /* left:-10rem; */
+    width:150rem; /* 100px line on either side */
+    border-bottom:2px solid #0275d8;
+    z-index: -1;
+  }
+  
+  .part-divider::after {
+    left:auto; right:-120px; /* make the "after" position on the right side of the h1 */
+  }
