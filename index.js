@@ -60,6 +60,6 @@ app.get('*', function(req, res){
     res.status(404).render('404');
 });
 
-app.listen(process.env.PORT || 3001, function(){
+app.listen(process.env.PORT || 5000, function(){
     console.log("React VSM has started");
 });

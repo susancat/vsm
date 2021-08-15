@@ -8,19 +8,33 @@ import Bin from './Bin';
 //fetch all quizzes and loop
 const QuizList = () => {
     const [quizzes, setQuizzes] = useState([]);
+    const [visibility, setVisibility] = useState(false);
+    const [favorite, setFavorite] = useState(false);
     useEffect(() => {
         getQuizzes()
     },[]);
 //make the above [] blank to run useEffect only once when initial render
     function getQuizzes(){
-        axios.get('http://localhost:3001/api/quizzes')
+        axios.get(`/api/quizzes`)
         .then(async res => {
-            console.log(res.data)
             setQuizzes(res.data)
         }).catch(err => {
             console.log(err);
         })
     }
+
+    const createQuiz = async () => {
+        const res = await axios.post(`/api/quizzes`)
+        console.log(res)
+    }
+
+    const updateVisibility = async (visibility,id) => {
+        const res = await axios.put(`/api/quizzes/${id}`)
+    }
+    // const deleteQuiz = async(id) => {
+    //     const res = await axios.delete(`/api/quizzes/${id}`)
+    //     console.log(res)
+    // }
     //try use another useEffect to handle form change
     return (
         <div>
@@ -60,15 +74,28 @@ const QuizList = () => {
                                         }
                                     </td>
                                     <td>
+                                        <form>
                                         { quiz.public === true ?
-                                            <i class="fa fa-eye" aria-hidden="true"></i> : <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                        <button className="btn" value={visibility} onClick={setVisibility(false)}><i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                             : 
+                                        <button value={visibility} onClick={setVisibility(true)}>                         
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                        </button>
                                         }
+                                        </form>                          
                                     </td>
                                     <td>{quiz.questions.length}</td>
                                     <td>{quiz.grade}</td>
                                     <td>{quiz.category}</td>
-                                    <td>{quiz.lastUpdated}</td>
-                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                    <td>{quiz.lastUpdated.toLocaleString()}</td>
+                                    <td>
+                                        {/* <form>
+                                            <button onClick={deleteQuiz(quiz._id)}> */}
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                {/* </button>
+                                        </form> */}
+                                        </td>
                                 </tr>
                             )
                         })}
@@ -80,7 +107,9 @@ const QuizList = () => {
             <div class="container mt-5 mb-3 text-center" id="no_quiz">
                 <h3 className="text-muted">There are all the quizzes you created.</h3>
                 <h3 className="text-muted">Create a new one?</h3>
-                <button className="btn btn-primary btn-md"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Create</button>
+                <form>
+                    <button className="btn btn-primary btn-md" onClick={createQuiz}><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Create</button>
+                </form>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ const Header = () => {
         getUser()
     },[user]);
     function getUser(){
-        axios('http://localhost:3001/api/current_user',{ withCredentials: true })
+        axios(`/api/current_user`,{ withCredentials: true })
         .then(async response => {
             console.log(response)
             setUser(response.data.username)

@@ -9,7 +9,7 @@ const Quiz = ({id}) => {
     },[id]);
 
     function getQuiz(id) {
-        axios.get(`http://localost:3001/api/quizzes/${id}`)
+        axios.get(`/api/quizzes/${id}`)
         .then(async res => {
             setQuiz(res.data)
         }).catch(err => {
@@ -17,7 +17,7 @@ const Quiz = ({id}) => {
         })
     }
     return (
-        <div>
+        <div className="mt-5">
             <h1>I am one quiz</h1>
             <h1>{quiz.title}</h1>
         </div>

@@ -11,7 +11,7 @@
 }
 
 .part-divider{
-    width: 20%;
+    max-width: 20%;
     cursor:initial; 
     position:relative; 
     display:inline-block;
