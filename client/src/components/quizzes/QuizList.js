@@ -28,6 +28,9 @@ const QuizList = () => {
         console.log(res)
     }
 
+    const postData = () => {
+        console.log(visibility);
+    }
     const updateVisibility = async (visibility,id) => {
         const res = await axios.put(`/api/quizzes/${id}`)
     }
@@ -75,14 +78,10 @@ const QuizList = () => {
                                     </td>
                                     <td>
                                         <form>
-                                        { quiz.public === true ?
-                                        <button className="btn" value={visibility} onClick={setVisibility(false)}><i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                             : 
-                                        <button value={visibility} onClick={setVisibility(true)}>                         
-                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                        </button>
-                                        }
+                                            <input type="checkbox" className="d-none" value={ visibility } />
+                                            <button type="submit" onClick={postData}>                         
+                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                            </button>
                                         </form>                          
                                     </td>
                                     <td>{quiz.questions.length}</td>

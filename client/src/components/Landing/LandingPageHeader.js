@@ -11,7 +11,6 @@ const LandingPageHeader = () => {
     function getUser(){
         axios.get(`/api/current_user`,{ withCredentials: true })
         .then(async response => {
-            console.log(response)
             setUser(response.data.googleid)
         }).catch(error => {
             console.log(error)
