@@ -41,7 +41,7 @@ const Quiz = props => {
                     {quiz.public === false ?
                      <h6>A private quiz</h6> : <h6>A public quiz</h6>
                     }
-                    <p className="mt-2"><em>Created By { quiz.author.username }</em></p>
+                    {/* <p className="mt-2"><em>Created By { quiz.author.username }</em></p> */}
                 </div>
             </div>
         </div>

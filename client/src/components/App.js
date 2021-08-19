@@ -17,7 +17,7 @@ function App() {
         <Route path='/testamonials' component={ Test } />
         <Route path='/quizzes' exact component={ QuizList } />
         <Route path='/quizzes/:id' exact component={ Quiz } />
-        <Route path='/quizzes/draft/:id' exact component={ EditQuiz } />
+        <Route path='/quizzes/:id/edit' exact component={ EditQuiz } />
         <Route path='/dashboard' component={ Dashboard } />
         <Footer />
       </div>
