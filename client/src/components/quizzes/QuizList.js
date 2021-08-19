@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import axios from 'axios';
-
+import Td from '../Td';
 import Header from '../Header';
 import SearchBar from './SearchBar';
 import Bin from './Bin';
@@ -8,32 +8,32 @@ import Bin from './Bin';
 //fetch all quizzes and loop
 const QuizList = () => {
     const [quizzes, setQuizzes] = useState([]);
-    const [visibility, setVisibility] = useState(false);
-    const [favorite, setFavorite] = useState(false);
+    // const [visibility, setVisibility] = useState(false);
+    // const [favorite, setFavorite] = useState(false);
     useEffect(() => {
         getQuizzes()
+//infinite re-render not caused here
     },[]);
 //make the above [] blank to run useEffect only once when initial render
-    function getQuizzes(){
+    function getQuizzes () {
         axios.get(`/api/quizzes`)
-        .then(async res => {
-            setQuizzes(res.data)
+        .then(res => { 
+            setQuizzes(res.data)    
+            //infinite re-render caused here       
         }).catch(err => {
             console.log(err);
         })
     }
 
-    const createQuiz = async () => {
-        const res = await axios.post(`/api/quizzes`)
-        console.log(res)
-    }
+    // const createQuiz = () => {
+    //     const res = axios.post(`/api/quizzes`)
+    //     console.log(res)
+    // }
 
-    const postData = () => {
-        console.log(visibility);
-    }
-    const updateVisibility = async (visibility,id) => {
-        const res = await axios.put(`/api/quizzes/${id}`)
-    }
+    // const updateVisibility = (id) => {
+    //     console.log(visibility);
+    //     axios.put(`/api/quizzes/${id}`)
+    // }
     // const deleteQuiz = async(id) => {
     //     const res = await axios.delete(`/api/quizzes/${id}`)
     //     console.log(res)
@@ -49,10 +49,10 @@ const QuizList = () => {
                 </div>
             </div>
             <div class="row mt-4">
-                <h4 class="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My games&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                <h4 className="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My games&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
             </div>
             <div className="container">
-                <div className="table-responsive">
+                <div className="table-responsive table-hover">
                     <table className="table">
                         <thead className="text-muted">
                             <tr>
@@ -69,19 +69,19 @@ const QuizList = () => {
                         <tbody>
                         { quizzes.map(quiz => {
                             return(
-                                <tr className='clickable-row'>
-                                    <td>{quiz.title}</td>
+                                <tr key={quiz._id}>
+                                    <Td to={{ pathname: `/quizzes/${quiz._id}`, state: { id: quiz._id }}}>{quiz.title}</Td>
                                     <td>
                                         { quiz.favorite && quiz.favorite === true ? 
-                                            <i class="fa fa-star" aria-hidden="true"></i> : <i class="far fa-star"></i>
+                                            <i className="fa fa-star" aria-hidden="true"></i> : <i className="far fa-star"></i>
                                         }
                                     </td>
                                     <td>
                                         <form>
-                                            <input type="checkbox" className="d-none" value={ visibility } />
-                                            <button type="submit" onClick={postData}>                         
-                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                            </button>
+                                            {/* <input type="checkbox" className="form-control d-none" value={ setVisibility(!visibility) } /> */}
+                                            {/* <button type="submit" onClick={updateVisibility}>                          */}
+                                                <i className="fa fa-eye-slash" aria-hidden="true"></i>
+                                            {/* </button> */}
                                         </form>                          
                                     </td>
                                     <td>{quiz.questions.length}</td>
@@ -91,7 +91,7 @@ const QuizList = () => {
                                     <td>
                                         {/* <form>
                                             <button onClick={deleteQuiz(quiz._id)}> */}
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <i className="fa fa-trash" aria-hidden="true"></i>
                                                 {/* </button>
                                         </form> */}
                                         </td>
@@ -103,11 +103,11 @@ const QuizList = () => {
                 </div>
             </div>
             <Bin />
-            <div class="container mt-5 mb-3 text-center" id="no_quiz">
+            <div className="container mt-5 mb-3 text-center" id="no_quiz">
                 <h3 className="text-muted">There are all the quizzes you created.</h3>
                 <h3 className="text-muted">Create a new one?</h3>
                 <form>
-                    <button className="btn btn-primary btn-md" onClick={createQuiz}><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Create</button>
+                    {/* <button className="btn btn-primary btn-md" onClick={createQuiz}><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Create</button> */}
                 </form>
             </div>
         </div>

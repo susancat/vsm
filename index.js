@@ -56,9 +56,9 @@ app.use('/api/quizzes', quizRoutes);
 app.get('/', function(req, res){
     res.send("VSM!!!!!!")
   });
-app.get('*', function(req, res){
-    res.status(404).render('404');
-});
+// app.get('*', function(req, res){
+//     res.status(404).render('404');
+// });
 
 app.listen(process.env.PORT || 5000, function(){
     console.log("React VSM has started");
