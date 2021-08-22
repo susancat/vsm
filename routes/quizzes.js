@@ -42,11 +42,12 @@ router.get('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+    console.log(req.body)
     await Quiz.findByIdAndUpdate(req.params.id, req.body.quiz, (err, updatedQuiz) => {
         if(err){
             res.redirect('back')
         } else {
-            res.status(200).json(updatedQuiz);
+            res.redirect('/:id')
         }
     })
 })
