@@ -19,8 +19,8 @@ const EditQuiz = props => {
         favorite: false
     }
 
-    const [quiz, setQuiz] = useState(initialQuizState)
-
+    const [originalQuiz, setQuiz] = useState(initialQuizState)
+    const [title, setTitle] = useState(originalQuiz.title)
     function getQuiz(id) {
         axios.get(`http://localhost:5000/api/quizzes/${id}`)
         .then(res => {
@@ -38,19 +38,19 @@ const EditQuiz = props => {
     //     const { name, value } = event.target;
     //     setQuiz({ ...quiz, [name]: value });
     //   };
-
+//the problem is how to make title as quiz[title] and fetched by backend
     function updateQuiz(id) {
-        const data = {
-            title: quiz.title,
-            category: quiz.category,
-            grade: quiz.grade,
-            difficulty: quiz.difficulty,
-            description: quiz.description,
-            visibility: quiz.visibility,
-            favorite: quiz.favorite
+        const quiz = {
+            title: title,
+            category: originalQuiz.category,
+            grade: originalQuiz.grade,
+            difficulty: originalQuiz.difficulty,
+            description: originalQuiz.description,
+            visibility: originalQuiz.visibility,
+            favorite: originalQuiz.favorite
         }
         axios.put(`http://localhost:5000/api/quizzes/${id}`, {
-            data
+            quiz
         }).catch(err => {
             console.log(err)
         })
@@ -60,8 +60,8 @@ const EditQuiz = props => {
         <div>
             <Header />
             <form className="mt-5">
-                {/* <input type="text" value={`${singleQuiz.title}`} onChange={(e) => setTitle(e.target.value)} /> */}
-                <button type="submit">Update</button>
+            <input type="text" placeholder={`${originalQuiz.title}`} onChange={(e) => setTitle(e.target.value)} />
+                <button type="submit" onClick={updateQuiz}>Update</button>
             </form>
         </div>
     )
