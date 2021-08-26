@@ -6,8 +6,8 @@ export default function Td({ children, to }) {
   const ContentTag = to ? Link : 'div';
 
   return (
-    <td>
+    <tr>
       <ContentTag to={to}>{children}</ContentTag>
-    </td>
+    </tr>
   );
 }

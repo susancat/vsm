@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import axios from 'axios';
-import Td from '../Td';
+import Tr from '../Tr';
 import Header from '../Header';
 import SearchBar from './SearchBar';
 import Bin from './Bin';
@@ -24,7 +24,7 @@ const QuizList = () => {
             console.log(err);
         })
     }
-
+       
     // const createQuiz = () => {
     //     const res = axios.post(`/api/quizzes`)
     //     console.log(res)
@@ -69,8 +69,8 @@ const QuizList = () => {
                         <tbody>
                         { quizzes.map(quiz => {
                             return(
-                                <tr key={quiz._id}>
-                                    <Td to={{ pathname: `/quizzes/${quiz._id}`, state: { id: quiz._id }}}>{quiz.title}</Td>
+                                <Tr key={quiz._id} to={{ pathname: `/quizzes/${quiz._id}`, state: { id: quiz._id }}}>
+                                    <td>{quiz.title}</td>
                                     <td>
                                         { quiz.favorite && quiz.favorite === true ? 
                                             <i className="fa fa-star" aria-hidden="true"></i> : <i className="far fa-star"></i>
@@ -95,7 +95,7 @@ const QuizList = () => {
                                                 {/* </button>
                                         </form> */}
                                         </td>
-                                </tr>
+                                </Tr>
                             )
                         })}
                         </tbody>

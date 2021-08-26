@@ -42,14 +42,21 @@ router.get('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+    const { title, category, difficulty, description, visibility, favorite } = req.body.data;
     const updateQuiz = {
-        title: req.body.quiz.title
+        title,
+        category,
+        difficulty,
+        description,
+        visibility,
+        favorite
     }
     await Quiz.findByIdAndUpdate(req.params.id, updateQuiz, (err, updatedQuiz) => {
         if(err){
             res.redirect('back')
         } else {
-            res.redirect('/:id')
+            console.log(updatedQuiz);
+            res.redirect('/quizzes')
         }
     })
 })

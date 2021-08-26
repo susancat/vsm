@@ -10,7 +10,6 @@ const Header = () => {
     function getUser(){
         axios(`/api/current_user`,{ withCredentials: true })
         .then(response => {
-            console.log(response)
             setUser(response.data.username)
         }).catch(error => {
             console.log(error)
