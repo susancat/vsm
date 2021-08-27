@@ -17,8 +17,8 @@ const Footer = () => {
 
                     <div className="col-md-6 col-lg-6 col-xl-6 mx-auto mt-3">
                         <h6 className="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                        <p><i className="fas fa-home mr-2"></i>Dalton Learning Lab, Cyberport, Hong Kong</p>
-                        <p><i className="fas fa-envelope mr-2"></i>admin@virtualschoolmaker.com</p>
+                        <p><i className="fas fa-home mr-2"></i>&nbsp;Hong Kong</p>
+                        <p><i className="fas fa-envelope mr-2"></i>&nbsp;zhangjiayu71@hotmail.com</p>
                     </div>
   
                 <hr className="w-100 clearfix d-md-none" />

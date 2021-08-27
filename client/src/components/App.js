@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import QuizList from './quizzes/QuizList';
 import Quiz from './quizzes/Quiz';
 import EditQuiz from './quizzes/EditQuiz';
+import QuestionList from './questions/QuestionList';
 import Footer from './Footer';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/quizzes' exact component={ QuizList } />
         <Route path='/quizzes/:id' exact component={ Quiz } />
         <Route path='/quizzes/:id/edit' exact component={ EditQuiz } />
+        <Route path='/quizzes/:id/questions' exact component={ QuestionList } />
         <Route path='/dashboard' component={ Dashboard } />
         <Footer />
       </div>

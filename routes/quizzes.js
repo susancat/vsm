@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    await Quiz.findById(req.params.id, (err, quiz) => {
+    await (await Quiz.findById(req.params.id)).populated("questions").exec((err, quiz) => {
         if(err){
             res.redirect('back')
         } else {
@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
             res.redirect('back')
         } else {
             console.log(updatedQuiz);
-            res.redirect('/quizzes')
+            res.status(200).json(updatedQuiz)
         }
     })
 })

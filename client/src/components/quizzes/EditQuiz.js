@@ -1,13 +1,13 @@
 import React,{ useState,useEffect } from 'react'
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import Header from '../Header';
-
+//about useHistory, see https://reactrouter.com/web/api/Hooks
 const EditQuiz = props => {
     console.log(props)
     const {id} = props.location.state;
-    console.log("this is id: "+ id)
+    const history = useHistory();
     //even it's an update, the initial value is not like quiz.title
 
     const initialQuizState = {
@@ -26,7 +26,7 @@ const EditQuiz = props => {
     const [difficulty, setDifficulty] = useState(quiz.difficulty);
     const [visibility, setVisibility] = useState(quiz.visibility);
     const [favorite, setFavorite] = useState(quiz.favorite);
-
+    const [updated, setUpdated] = useState(false);
     useEffect(() => {
         getQuiz(id)
     },[id])
@@ -45,9 +45,9 @@ const EditQuiz = props => {
     //     const { name, value } = event.target;
     //     setQuiz({ ...quiz, [name]: value });
     //   };
-//the problem is how to make title as quiz[title] and fetched by backend
-    const updateQuiz = () => {
-        // e.preventDefault();
+//axios can't be redirected from backend; preventDefault is required
+    const updateQuiz = (e) => {
+        e.preventDefault();
         const data = {
             title: title,
             category: category,
@@ -58,42 +58,54 @@ const EditQuiz = props => {
         }
         axios.put(`http://localhost:5000/api/quizzes/${id}`, {
             data
-        }).catch(err => {
+        })
+        .then(res => { 
+            console.log(res);
+            console.log(history)
+            if (res.status === 200 ) {
+            history.push("/quizzes");
+        }})
+        .catch(err => {
             console.log(err)
         })
     }
 
-    return (
-        <div className="container">
-            <Header />
-            <h3 className="mt-5 mb-2 text-center">Edit quiz</h3>
-            <form className="mx-auto" style={{width:"50%;"}}>
-                <div className="form-group mb-1">
-                    <input className="form-control" type="text" placeholder={`${quiz.title}`} onChange={(e) => setTitle(e.target.value)} />
+
+
+            return (
+                <div className="container">
+                    <Header />
+                    <h3 className="mt-5 mb-2 text-center">Edit quiz</h3>
+                    <form className="mx-auto" style={{width:"50%;"}}>
+                        <div className="form-group mb-1">
+                            <input className="form-control" type="text" placeholder={`${quiz.title}`} onChange={(e) => setTitle(e.target.value)} required/>
+                        </div>
+                        <div className="form-group mb-1">
+                            <input className="form-control" type="text" placeholder={`${quiz.category}`} onChange={(e) => setCategory(e.target.value)} />
+                        </div>
+                        <div className="form-group mb-1">
+                            <select className="form-control" id="" onChange={(e) => setDifficulty(e.target.value)}> 
+                                <option value={`${quiz.difficulty}`}>{quiz.difficulty}</option>
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
+                        <div className="form-group mb-1">
+                            <textarea row="5" className="form-control" onChange={(e) => setDescription(e.target.value)}>{quiz.description}</textarea>
+                        </div>
+                        {/* <div className="form-inline mb-1">
+                            <input className="form-control" type="radio" name={`${quiz.visibility}`} value="true" onChange={(e) => setCategory(e.target.value)} />
+                        </div> */}
+                        <div className="form-group mb-1">
+                            <button className="btn btn-primary" type="submit" onClick={updateQuiz}>Update</button>
+                        </div>
+                    </form>
                 </div>
-                <div className="form-group mb-1">
-                    <input className="form-control" type="text" placeholder={`${quiz.category}`} onChange={(e) => setCategory(e.target.value)} />
-                </div>
-                <div className="form-group mb-1">
-                    <select className="form-control" id="" onChange={(e) => setDifficulty(e.target.value)}> 
-                        <option value={`${quiz.difficulty}`}>{quiz.difficulty}</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                </div>
-                <div className="form-group mb-1">
-                    <textarea row="5" className="form-control" onChange={(e) => setDescription(e.target.value)}>{quiz.description}</textarea>
-                </div>
-                {/* <div className="form-inline mb-1">
-                    <input className="form-control" type="radio" name={`${quiz.visibility}`} value="true" onChange={(e) => setCategory(e.target.value)} />
-                </div> */}
-                <div className="form-group mb-1">
-                    <button className="btn btn-primary" type="submit" onClick={updateQuiz}>Update</button>
-                </div>
-            </form>
-        </div>
-    )
-}
+            )
+        }
+
+
+
 
 export default EditQuiz;

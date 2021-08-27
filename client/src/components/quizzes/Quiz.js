@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from '../Header';
+import QuestionList from '../questions/QuestionList';
 
 const Quiz = props => {
     const { id } = props.location.state;
@@ -43,6 +44,9 @@ const Quiz = props => {
                     }
                     {/* <p className="mt-2"><em>Created By { quiz.author.username }</em></p> */}
                 </div>
+            </div>
+            <div className="col-md-8">
+                <QuestionList id={quiz.id}/>
             </div>
         </div>
     )

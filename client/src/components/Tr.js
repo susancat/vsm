@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Td({ children, to }) {
+export default function Tr({ children, to }) {
   // Conditionally wrapping content into a link
-  const ContentTag = to ? Link : 'div';
+  const ContentTag = to ? Link : 'tr';
 
   return (
-    <tr>
       <ContentTag to={to}>{children}</ContentTag>
-    </tr>
   );
 }

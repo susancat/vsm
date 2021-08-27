@@ -9,7 +9,8 @@ const express = require('express'),
 require('./services/passport');
 
 const authRoutes = require('./routes/auth'),
-      quizRoutes = require('./routes/quizzes');
+      quizRoutes = require('./routes/quizzes'),
+      questionRoutes = require('./routes/questions');
 
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
@@ -52,6 +53,7 @@ app.use(passport.session());
 
 app.use(authRoutes);
 app.use('/api/quizzes', quizRoutes);
+app.use('/api/quizzes/:id/questions',questionRoutes);
 
 app.get('/', function(req, res){
     res.send("VSM!!!!!!")
