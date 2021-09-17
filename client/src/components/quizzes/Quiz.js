@@ -1,30 +1,29 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
+
 import QuestionList from '../questions/QuestionList';
 
 const Quiz = props => {
     const { id } = props.location.state;
-    //print props and right click to get path if id
-    const [quiz, setQuiz] = useState(0);
+
+    const [quiz, setQuiz] = useState("");
     useEffect(() => {
         getQuiz(id)
         //get id from line4 and pass to function getQuiz
     },[id]);
 
     function getQuiz(id) {
-        // console.log(id)
         axios.get(`http://localhost:5000/api/quizzes/${id}`)
-        .then(async res => {
+        .then(res => {
             setQuiz(res.data)
         }).catch(err => {
             console.log(err)
         })
     }
+
     return (
-        <div className="row mt-5">
-            <Header />
+        <div className="row mt-5 mb-2">
             <div className="col-md-4 card bg-light">
                 <div className="card-body mt-2 ml-2 pr-0">
                     <h4 className="d-flex justify-content between">
@@ -46,7 +45,7 @@ const Quiz = props => {
                 </div>
             </div>
             <div className="col-md-8">
-                <QuestionList id={quiz.id}/>
+                <QuestionList id={quiz._id}/>
             </div>
         </div>
     )

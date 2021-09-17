@@ -1,9 +1,8 @@
 import React, { useState, useEffect }from 'react';
 import axios from 'axios';
-import Tr from '../Tr';
-import { Link, useHistory } from 'react-router-dom';
-import Header from '../Header';
+
 import SearchBar from './SearchBar';
+import QuizRow from './QuizRow';
 import Bin from './Bin';
 
 //fetch all quizzes and loop
@@ -26,23 +25,8 @@ const QuizList = () => {
         })
     }
 
-    // const createQuiz = () => {
-    //     const res = axios.post(`/api/quizzes`)
-    //     console.log(res)
-    // }
-
-    // const updateVisibility = (id) => {
-    //     console.log(visibility);
-    //     axios.put(`/api/quizzes/${id}`)
-    // }
-    // const deleteQuiz = async(id) => {
-    //     const res = await axios.delete(`/api/quizzes/${id}`)
-    //     console.log(res)
-    // }
-    //try use another useEffect to handle form change
     return (
         <div>
-        <Header />
         <div className="mt-5">
             <div className="container pt-3">
                 <div className="row">
@@ -50,7 +34,7 @@ const QuizList = () => {
                 </div>
             </div>
             <div class="row mt-4">
-                <h4 className="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My games&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                <h4 className="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My quizzes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
             </div>
             <div className="container">
                 <div className="table-responsive table-hover">
@@ -70,36 +54,7 @@ const QuizList = () => {
                         <tbody>
                         { quizzes.map(quiz => {
                             return(
-                                <Tr key={quiz._id} to={{ 
-                                    pathname: `/quizzes/${quiz._id}`,
-                                    state: { id: quiz._id }}}
-                                    >
-                                    <td>{quiz.title}</td>
-                                    <td>
-                                        { quiz.favorite && quiz.favorite === true ? 
-                                            <i className="fa fa-star" aria-hidden="true"></i> : <i className="far fa-star"></i>
-                                        }
-                                    </td>
-                                    <td>
-                                        <form>
-                                            {/* <input type="checkbox" className="form-control d-none" value={ setVisibility(!visibility) } /> */}
-                                            {/* <button type="submit" onClick={updateVisibility}>                          */}
-                                                <i className="fa fa-eye-slash" aria-hidden="true"></i>
-                                            {/* </button> */}
-                                        </form>                          
-                                    </td>
-                                    <td>{quiz.questions.length}</td>
-                                    <td>{quiz.grade}</td>
-                                    <td>{quiz.category}</td>
-                                    <td>{quiz.lastUpdated.toLocaleString()}</td>
-                                    <td>
-                                        {/* <form>
-                                            <button onClick={deleteQuiz(quiz._id)}> */}
-                                                <i className="fa fa-trash" aria-hidden="true"></i>
-                                                {/* </button>
-                                        </form> */}
-                                        </td>
-                                </Tr>
+                                <QuizRow key={quiz._id} id={quiz._id} />
                             )
                         })}
                         </tbody>

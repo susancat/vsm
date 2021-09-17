@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
 import NewQuestion from './NewQuestion';
+import Question from './Question';
 
 const QuestionList = props => {
-    console.log(props)
     const { id } = props;
-    const [quiz, setQuiz] = useState(0)
+    const [quiz, setQuiz] = useState("")
 
     useEffect(() => {
         getQuiz(id);
@@ -23,20 +23,20 @@ const QuestionList = props => {
 
     if (quiz.questions) {
         return (
-            <div className="mt-5">
+            <div className="mt-5 container">
+                <NewQuestion quizId={quiz._id} />
                 { quiz.questions.map(question => {
                     return(
-                        <h4>{question.text}</h4>
+                        <Question id={question.id}/>
                     )
                 })}
-                <NewQuestion />
             </div>
         )
     } 
     
     return (
         <div className="container mt-5">
-            <NewQuestion />
+            <NewQuestion quizid={quiz._id} />
         </div>          
     )
 

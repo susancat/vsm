@@ -4,7 +4,7 @@ const Bin = () => {
     return(
         <div>
             <div class="row mt-4">
-                <h4 class="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;Deleted Quizzes&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                <h4 class="btn btn-primary btn-lg part-divider">&nbsp;&nbsp;&nbsp;&nbsp;Deleted quizzes&nbsp;&nbsp;&nbsp;&nbsp;</h4>
             </div>
             <div class="container">
                 <div class="table-responsive table-hover">

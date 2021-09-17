@@ -31,8 +31,8 @@ router.post('/', (req, res) => {
     }) 
 })
 
-router.get('/:id', async (req, res) => {
-    await (await Quiz.findById(req.params.id)).populated("questions").exec((err, quiz) => {
+router.get('/:id', (req, res) => {
+    Quiz.findById(req.params.id).populate("questions").exec((err, quiz) => {
         if(err){
             res.redirect('back')
         } else {

@@ -31,3 +31,8 @@
   .part-divider::after {
     left:auto; right:-120px; /* make the "after" position on the right side of the h1 */
   }
+
+  ::placeholder {
+    color: #fff;
+    opacity: 1;
+  }
