@@ -27,7 +27,7 @@ const QuestionList = props => {
                 <NewQuestion quizId={quiz._id} />
                 { quiz.questions.map(question => {
                     return(
-                        <Question id={question.id}/>
+                        <Question quizId={quiz._id} id={question._id} key={question._id} />                
                     )
                 })}
             </div>

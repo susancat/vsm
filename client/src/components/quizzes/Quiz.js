@@ -24,7 +24,7 @@ const Quiz = props => {
 
     return (
         <div className="row mt-5 mb-2">
-            <div className="col-md-4 card bg-light">
+            <div className="col-md-3 card bg-light">
                 <div className="card-body mt-2 ml-2 pr-0">
                     <h4 className="d-flex justify-content between">
                         Quiz name: { quiz.title }
@@ -44,7 +44,7 @@ const Quiz = props => {
                     {/* <p className="mt-2"><em>Created By { quiz.author.username }</em></p> */}
                 </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-9">
                 <QuestionList id={quiz._id}/>
             </div>
         </div>

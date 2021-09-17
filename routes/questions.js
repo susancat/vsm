@@ -4,28 +4,28 @@ const express = require('express'),
       Question = require('../models/Question');
 
 router.post('/', async (req,res) => {
-    const { text, option1, option2, option3, option4, category, level, type, public, image, assetId } = req.body;
+    const { text, option1, option2, option3, option4, type } = req.body;
     const author = {
         id: req.user._id,
         username: req.user.username
     };
-    const newQuestion = { text, level, category, type, option1, option2, option3, option4, public, author, image, assetId };
+    const newQuestion = { text, type, option1, option2, option3, option4, author };
     // const newQuestionBank = { text: text, level: level, category: category, type: type, option1: option1, option2: option2, option3: option3, option4: option4, public: public, author: author, image: image, assetId: assetId };
 
-    await Quiz.findById(req.params.id, async function(err, quiz){
+    await Quiz.findById(req.params.id, async (err, quiz) => {
         if(err){
             console.log(err);
             res.redirect("back");
         } else {
-            Question.create(newQuestion, async function(err, question){
+            Question.create(newQuestion, async (err, question) => {
                 if (err){
-                    req.flash("error", "Something went wrong!");
                     console.log(err);
                 } else {
                     await question.save();
                     await quiz.questions.push(question);
                     await quiz.save();                
-                    res.status(200).json(question)
+                    res.status(200).json(question);
+                    res.redirect("back");
                 }
             })
        }

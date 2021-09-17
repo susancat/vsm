@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return(
-        <footer className="footer font-small pt-2 pb-0 mb-0 mt-0 bg-primary fixed-bottom">
+        <footer className="footer font-small pt-2 pb-0 mb-0 mt-3 bg-primary fixed-bottom">
             <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-lg-6">
                     <h6 className="text-uppercase font-weight-bold">Follow Me&nbsp;&nbsp;&nbsp;&nbsp;

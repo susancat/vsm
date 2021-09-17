@@ -18,7 +18,7 @@ const Header = () => {
 
     return(
         <nav className="navbar navbar-expand-lg navbar-inverse fixed-top bg-primary">   
-            <Link className="navbar-brand" style={{width:'15%', minWidth: '6rem', color: '#fff'}} to="/">Home</Link>
+            <Link className="navbar-brand ms-2" style={{width:'15%', minWidth: '6rem', color: '#fff'}} to="/">Home</Link>
             <button className="navbar-toggler ml-auto mt-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>

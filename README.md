@@ -1,3 +1,6 @@
+<img src="sample.png">
+
+
 # React web app
 - quiz app similar to Kahoot
 - create cusmonized quizzes and sent to Roblox games
