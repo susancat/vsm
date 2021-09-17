@@ -1,4 +1,4 @@
-<img src="sample.png">
+<img src="/client/public/sample.png">
 
 
 # React web app
