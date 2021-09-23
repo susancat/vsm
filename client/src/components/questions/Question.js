@@ -20,7 +20,7 @@ const Question = (props) => {
         })
     }
     return (
-        <div key={question._id} className="card mt-2 border-primary col-lg-6">
+        <div key={question._id} className="card mt-2 border-primary col-md-6 col-sm-12">
             <h5 className="card-header">{question.text}</h5>
             <div className="card-body">
                 <div className="row">

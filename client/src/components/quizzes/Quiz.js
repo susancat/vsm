@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import QuestionList from '../questions/QuestionList';
+import DeleteBtn from './DeleteBtn';
 
 const Quiz = props => {
     const { id } = props.location.state;
@@ -26,7 +27,7 @@ const Quiz = props => {
         <div className="row mt-5 mb-2">
             <div className="col-md-3 card bg-light">
                 <div className="card-body mt-2 ml-2 pr-0">
-                    <h4 className="d-flex justify-content between">
+                    <h4 className="d-flex justify-content-between">
                         Quiz name: { quiz.title }
                     </h4>
                     <h6>Category: { quiz.category }</h6>
@@ -36,7 +37,7 @@ const Quiz = props => {
                     <div className="row mb-2">
                         <button className="btn btn-xs btn-success me-1" type="submit" style={{width: '30%'}}>Play</button>   
                         <Link to={{ pathname: `/quizzes/${quiz._id}/edit`, state: { id: quiz._id }}} className="btn btn-xs btn-warning me-1" style={{width: '30%'}}>&nbsp;Edit&nbsp;</Link>
-                        <button className="btn btn-xs btn-danger" style={{width: '30%'}}>Delete</button>
+                        <DeleteBtn id={quiz._id} />
                     </div>
                     {quiz.public === false ?
                      <h6>A private quiz</h6> : <h6>A public quiz</h6>
