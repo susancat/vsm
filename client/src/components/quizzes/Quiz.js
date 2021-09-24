@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 
 import QuestionList from '../questions/QuestionList';
 import DeleteBtn from './DeleteBtn';
+import EditModal from './EditModal';
 
 const Quiz = props => {
     const { id } = props.location.state;
 
     const [quiz, setQuiz] = useState("");
+    const [show, setShow] = useState(false);
+
     useEffect(() => {
         getQuiz(id)
         //get id from line4 and pass to function getQuiz
@@ -37,6 +40,8 @@ const Quiz = props => {
                     <div className="row mb-2">
                         <button className="btn btn-xs btn-success me-1" type="submit" style={{width: '30%'}}>Play</button>   
                         <Link to={{ pathname: `/quizzes/${quiz._id}/edit`, state: { id: quiz._id }}} className="btn btn-xs btn-warning me-1" style={{width: '30%'}}>&nbsp;Edit&nbsp;</Link>
+                        <button onClick={() => setShow(true)}>show modal</button>
+                        <EditModal show={show} onClose={() => setShow(false)}   />
                         <DeleteBtn id={quiz._id} />
                     </div>
                     {quiz.public === false ?
