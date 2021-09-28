@@ -39,9 +39,8 @@ const Quiz = props => {
                     <p>{ quiz.description }</p>
                     <div className="row mb-2">
                         <button className="btn btn-xs btn-success me-1" type="submit" style={{width: '30%'}}>Play</button>   
-                        <Link to={{ pathname: `/quizzes/${quiz._id}/edit`, state: { id: quiz._id }}} className="btn btn-xs btn-warning me-1" style={{width: '30%'}}>&nbsp;Edit&nbsp;</Link>
-                        <button onClick={() => setShow(true)}>show modal</button>
-                        <EditModal show={show} onClose={() => setShow(false)}   />
+                        <button className="btn btn-xs btn-warning me-1" onClick={() => setShow(true)} style={{width: '30%'}}>&nbsp;Edit&nbsp;</button>
+                        <EditModal show={show} onClose={() => setShow(false)} id={quiz._id}  />
                         <DeleteBtn id={quiz._id} />
                     </div>
                     {quiz.public === false ?
